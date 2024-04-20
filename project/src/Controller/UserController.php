@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class UserController extends AbstractController
 {
-
     private $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)

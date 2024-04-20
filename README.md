@@ -1,4 +1,7 @@
 # Symfony 7 project with Event Dispatcher
+## Intro
+
+This is Symfony 7 project, it has one api endpoint, EventDspatche and Listner. To make things simpler i added log file to show the data rather sent to notifications service.
 
 ## Steps to install the project
 
@@ -22,10 +25,13 @@ Set Method to "POST"
 
 add json data in body tab
 
-> { "firstName":  "test1", "lastName":  "test 3", "email":  "test@gmail.com" }
+{
+"firstName":  "test1",
+"lastName":  "test 3",
+"email":  "test@gmail.com"
+}
 
 also unit tests are added, please run below command in docker to execute the tests.
 - php bin/phpunit
 
-the saved data can be shown in DB and the log file at path 
-> ‘project/var/log/postData.txt’
+the saved data can be shown in DB and the log file at path ‘project/var/log/postData.txt’
