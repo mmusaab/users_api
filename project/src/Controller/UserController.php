@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Event\PostSavedEvent;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +23,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/api/users', methods: ['POST'])]
-    public function add(Request $request): Response
+    public function add(Request $request, EventDispatcherInterface $eventDispatcher): Response
     {
 
         $content = json_decode($request->getContent());
@@ -42,6 +44,9 @@ class UserController extends AbstractController
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
+
+        $event = new PostSavedEvent($user);
+        $eventDispatcher->dispatch($event, PostSavedEvent::NAME);
 
         return new JsonResponse(['message' => "New user added with email '" . $email . "'"], Response::HTTP_OK);
     }
