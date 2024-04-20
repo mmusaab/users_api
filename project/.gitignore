@@ -18,3 +18,10 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+#IDE Stuff
+**/.idea
+
+#OS STUFF
+.DS_Store
+.tmp
